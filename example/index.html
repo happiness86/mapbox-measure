@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Measure distances</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="../dist/index.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+<style>
+    .distance-container {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+    }
+
+    .distance-container > * {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 11px;
+        line-height: 18px;
+        display: block;
+        margin: 0;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaGFwcGluZXNzODYiLCJhIjoiY2sycWNlcHNoMGRuMTNjbnYwZnIxbnI4ZSJ9.Kfz8o-nHwrdR0m89Uj5EqA';
+	const map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/streets-v11',
+		center: [2.3399, 48.8555],
+		zoom: 12
+	});
+	map.on('load', function () {
+        const measures = new MapboxMeasure()
+        map.addControl(measures)
+    })
+
+</script>
+</body>
+</html>

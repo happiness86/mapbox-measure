@@ -1,0 +1,56 @@
+.__measure__ {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 8px 8px;
+	font-size: 14px;
+	border-radius: 4px;
+	min-width: 300px;
+	min-height: 160px;
+	background: #fff;
+}
+
+.__measure__ h3 {
+	font-size: 16px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.__measure__ .__measure__result__container .__measure__result {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+}
+.__measure__ .__measure__result__container .__measure__result span:first-child {
+	color: #999999;
+	margin-right: 4px;
+}
+
+.__measure__ .__measure__btn {
+	display: block;
+	background-color: #409EFF;
+	cursor: pointer;
+	padding: 4px 10px;
+	border: none;
+	border-radius: 2px;
+	color: #ffffff;
+	outline: none;
+}
+.__measure__ .__measure__btn:hover {
+	background-color: #409EFF!important;
+}
+.__measure__ .__measure__start_btn {
+	margin: 10px auto 0;
+	width: 160px;
+}
+.__measure__ .__btn__wrapper {
+	display: flex;
+	margin-top: 10px;
+	justify-content: center;
+}
+.__measure__  .__btn__hidden {
+	display: none;
+}
+.__measure__ .__btn__wrapper .__measure__cancel_btn {
+	margin-right: 10px;
+}

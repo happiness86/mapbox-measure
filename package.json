@@ -1,0 +1,28 @@
+{
+  "name": "mapbox-measure",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "repository": "happiness86/mapbox-measure",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "happiness86",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@turf/area": "^6.0.1",
+    "@turf/length": "^6.0.2"
+  }
+}
