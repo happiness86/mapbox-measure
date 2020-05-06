@@ -48,7 +48,9 @@ export default class Measure {
 		this._container.classList.add('mapboxgl-ctrl')
 		this._container.classList.add('__measure__')
 		this._container.appendChild(this._createOperatorWrapper())
-		this._addMeasureLayers()
+		if (!this._map.getSource(SOURCE_ID)) {
+			this._addMeasureLayers()
+		}
 
 		return this._container
 	}
