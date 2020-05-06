@@ -1,11 +1,12 @@
 {
   "name": "mapbox-measure",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/index.js",
   "repository": "happiness86/mapbox-measure",
   "scripts": {
     "build": "webpack",
+    "publish": "npm run build && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
