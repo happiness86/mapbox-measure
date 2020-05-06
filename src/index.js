@@ -96,9 +96,7 @@ export default class Measure {
 			lspan2.innerText = e.value.toLocaleString()
 			const lspan3 = document.createElement('span')
 			lspan3.innerText = e.unit
-			subContainer.appendChild(lspan1)
-			subContainer.appendChild(lspan2)
-			subContainer.appendChild(lspan3)
+			subContainer.append(lspan1, lspan2, lspan3)
 			container.appendChild(subContainer)
 		})
 		return container
@@ -117,7 +115,7 @@ export default class Measure {
 		startBtn.innerText = '开始一次新的测量'
 		startBtn.onclick = function (e) {
 			_this.cancelMeasure()
-			_this.addMoveEvent()
+			// _this.addMoveEvent()
 			_this.handleMapClick()
 			toggleBtn()
 		}
@@ -161,6 +159,23 @@ export default class Measure {
 		return fragment
 	}
 
+	// 创建点击图层，显示的弹窗内dom
+	_createPopupDom (cb) {
+		const popupWrapper = document.createElement('div')
+		popupWrapper.classList.add('__measure__popup')
+		const title = document.createElement('h3')
+		title.innerText = '测量结果'
+		const resultWrapper = this._createResultContainer()
+		const btn = document.createElement('div')
+		btn.classList.add('__measure__popup__del')
+		btn.innerText = '删除'
+		if (cb) {
+			btn.onclick = cb
+		}
+		popupWrapper.append(title, resultWrapper,  btn)
+		return popupWrapper
+	}
+
 	// 添加图层
 	_addMeasureLayers () {
 		this._map.addSource(SOURCE_ID, {
@@ -200,7 +215,29 @@ export default class Measure {
 			},
 			filter: ['in', '$type', 'Polygon']
 		})
+		this.handleLayerClick([MEASURE_POINT, MEASURE_POLYGON, MEASURE_LINE])
 	}
+
+	// 点击图层显示测量结果信息
+	handleLayerClick (layerIds) {
+		const _this = this
+		layerIds.forEach(layerId => {
+			this._map.on('click', layerId, function (e) {
+				if (!_this.isMeasuring) {
+					const popupWrapper = _this._createPopupDom(function () {
+						_this.cancelMeasure()
+						popup.remove()
+					})
+					const popup = new mapboxgl.Popup()
+						.setLngLat(e.lngLat)
+						.setDOMContent(popupWrapper)
+						.addTo(_this._map)
+				}
+			})
+		})
+	}
+
+
 
 	// 添加点
 	handleMapClick () {
@@ -251,15 +288,12 @@ export default class Measure {
 
 				// 计算面积
 				_this.result.totalArea = area(_this.polygonData)
-				console.log('geodata', _this.result.totalArea)
 
 				_this.calcArea(_this.result.totalArea)
 			}
 			_this._map.getSource(SOURCE_ID).setData(_this.geoData)
 		})
 	}
-
-	isLastPoint () {}
 
 	// 取消测量
 	cancelMeasure () {
@@ -310,15 +344,15 @@ export default class Measure {
 		}
 	}
 
-	addMoveEvent () {
-		const _this = this
-		this._map.on('mousemove', function (e) {
-			const features = _this._map.queryRenderedFeatures(e.point, {
-				layers: [MEASURE_POINT]
-			})
-			_this._map.getCanvas().style.cursor = features.length ? 'pointer' : 'crosshair'
-		})
-	}
+	// addMoveEvent () {
+	// 	const _this = this
+	// 	this._map.on('mousemove', function (e) {
+	// 		const features = _this._map.queryRenderedFeatures(e.point, {
+	// 			layers: [MEASURE_POINT]
+	// 		})
+	// 		_this._map.getCanvas().style.cursor = features.length ? 'pointer' : 'crosshair'
+	// 	})
+	// }
 
 	calcLength (totalLength) {
 		this._container.querySelector('.__measure__length').innerText = totalLength.toLocaleString()

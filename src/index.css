@@ -16,12 +16,12 @@
 	border-bottom: 1px solid #eee;
 }
 
-.__measure__ .__measure__result__container .__measure__result {
+.__measure__result__container .__measure__result{
 	display: flex;
 	align-items: center;
 	margin: 10px 0;
 }
-.__measure__ .__measure__result__container .__measure__result span:first-child {
+.__measure__result__container .__measure__result span:first-child {
 	color: #999999;
 	margin-right: 4px;
 }
@@ -53,4 +53,10 @@
 }
 .__measure__ .__btn__wrapper .__measure__cancel_btn {
 	margin-right: 10px;
+}
+
+.__measure__popup__del {
+	text-align: right;
+	cursor: pointer;
+	color: #409EFF;
 }
