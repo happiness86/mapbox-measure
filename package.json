@@ -1,6 +1,6 @@
 {
   "name": "mapbox-measure",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
   "repository": "happiness86/mapbox-measure",
